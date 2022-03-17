@@ -32,8 +32,17 @@ class todo(db.Model):
 def get_all_users():
     users = User.query.all()
     output=[]
-    for 
-    return ""
+    # print(users)
+    for user in users:
+        user_data={}
+        # print(user.public_id)
+        user_data['public_id']=user.public_id
+        user_data['name']=user.name
+        user_data['password']=user.password
+        user_data['admin']=user.admin
+        output.append(user_data)
+        print(user_data)
+    return jsonify({'users':output})
 
 @app.route('/user/<user_id>', methods=['GET'])
 def get_one_users():
@@ -55,7 +64,7 @@ def promote_user():
 
 @app.route('/user/<user_id>', methods=['DELETE'])
 def delete_user():
-    return ""
+    return " "
 
 if __name__ == '__main__':
     app.run(debug=True,host="127.0.0.1", port=8000)
